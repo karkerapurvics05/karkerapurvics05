@@ -1,0 +1,375 @@
+
+R version 4.5.2 (2025-10-31 ucrt) -- "[Not] Part in a Rumble"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Workspace loaded from ~/RPROG/.RData]
+
+> #PRAC 7
+> library(tidyverse)
+Error in library(tidyverse) : there is no package called ‘tidyverse’
+
+> required_packages <- c("tidyverse", "car", "ggpubr")
+> new_packages <- required_packages[!(required_packages %in% installed.packages()[,"Package"])]
+> if(length(new_packages)) install.packages(new_packages)
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing packages into ‘C:/Users/Purvi/AppData/Local/R/win-library/4.5’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘xts’, ‘TTR’, ‘quadprog’, ‘quantmod’, ‘fastmap’, ‘sys’, ‘ps’, ‘sass’, ‘digest’, ‘colorspace’, ‘fracdiff’, ‘lmtest’, ‘timeDate’, ‘tseries’, ‘urca’, ‘zoo’, ‘RcppArmadillo’, ‘cachem’, ‘rappdirs’, ‘askpass’, ‘base64enc’, ‘processx’, ‘evaluate’, ‘highr’, ‘xfun’, ‘yaml’, ‘bslib’, ‘fontawesome’, ‘htmltools’, ‘jquerylib’, ‘tinytex’, ‘Deriv’, ‘forecast’, ‘microbenchmark’, ‘rbibutils’, ‘backports’, ‘memoise’, ‘blob’, ‘DBI’, ‘data.table’, ‘gtable’, ‘isoband’, ‘S7’, ‘gargle’, ‘uuid’, ‘curl’, ‘ids’, ‘rematch2’, ‘mime’, ‘openssl’, ‘systemfonts’, ‘textshaping’, ‘callr’, ‘fs’, ‘knitr’, ‘rmarkdown’, ‘selectr’, ‘numDeriv’, ‘doBy’, ‘SparseM’, ‘MatrixModels’, ‘minqa’, ‘nloptr’, ‘reformulas’, ‘Rdpack’, ‘RcppEigen’, ‘farver’, ‘labeling’, ‘RColorBrewer’, ‘viridisLite’, ‘corrplot’, ‘broom’, ‘conflicted’, ‘dbplyr’, ‘dtplyr’, ‘forcats’, ‘ggplot2’, ‘googledrive’, ‘googlesheets4’, ‘haven’, ‘httr’, ‘jsonlite’, ‘modelr’, ‘ragg’, ‘reprex’, ‘rstudioapi’, ‘rvest’, ‘xml2’, ‘carData’, ‘abind’, ‘Formula’, ‘pbkrtest’, ‘quantreg’, ‘lme4’, ‘scales’, ‘ggrepel’, ‘ggsci’, ‘cowplot’, ‘ggsignif’, ‘gridExtra’, ‘polynom’, ‘rstatix’
+
+  There is a binary version available but the source version is later:
+      binary source needs_compilation
+knitr   1.50   1.51             FALSE
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/xts_0.14.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/TTR_0.24.4.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/quadprog_1.5-8.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/quantmod_0.4.28.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/fastmap_1.2.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/sys_3.4.3.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/ps_1.9.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/sass_0.4.10.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/digest_0.6.39.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/colorspace_2.1-2.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/fracdiff_1.5-3.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/lmtest_0.9-40.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/timeDate_4051.111.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/tseries_0.10-58.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/urca_1.3-4.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/zoo_1.8-15.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/RcppArmadillo_15.2.3-1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/cachem_1.1.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/rappdirs_0.3.3.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/askpass_1.2.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/base64enc_0.1-3.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/processx_3.8.6.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/evaluate_1.0.5.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/highr_0.11.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/xfun_0.55.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/yaml_2.3.12.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/bslib_0.9.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/fontawesome_0.5.3.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/htmltools_0.5.9.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/jquerylib_0.1.4.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/tinytex_0.58.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/Deriv_4.2.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/forecast_8.24.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/microbenchmark_1.5.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/rbibutils_2.4.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/backports_1.5.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/memoise_2.0.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/blob_1.2.4.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/DBI_1.2.3.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/data.table_1.17.8.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/gtable_0.3.6.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/isoband_0.3.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/S7_0.2.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/gargle_1.6.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/uuid_1.2-1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/curl_7.0.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/ids_1.0.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/rematch2_2.1.2.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/mime_0.13.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/openssl_2.3.4.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/systemfonts_1.3.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/textshaping_1.0.4.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/callr_3.7.6.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/fs_1.6.6.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/rmarkdown_2.30.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/selectr_0.5-1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/numDeriv_2016.8-1.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/doBy_4.7.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/SparseM_1.84-2.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/MatrixModels_0.5-4.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/minqa_1.2.8.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/nloptr_2.2.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/reformulas_0.4.3.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/Rdpack_2.6.4.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/RcppEigen_0.3.4.0.2.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/farver_2.1.2.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/labeling_0.4.3.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/RColorBrewer_1.1-3.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/viridisLite_0.4.2.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/corrplot_0.95.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/broom_1.0.11.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/conflicted_1.2.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/dbplyr_2.5.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/dtplyr_1.3.2.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/forcats_1.0.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/ggplot2_4.0.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/googledrive_2.1.2.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/googlesheets4_1.1.2.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/haven_2.5.5.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/httr_1.4.7.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/jsonlite_2.0.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/modelr_0.1.11.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/ragg_1.5.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/reprex_2.1.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/rstudioapi_0.17.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/rvest_1.0.5.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/xml2_1.5.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/carData_3.0-5.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/abind_1.4-8.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/Formula_1.2-5.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/pbkrtest_0.5.5.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/quantreg_6.1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/lme4_1.1-38.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/scales_1.4.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/ggrepel_0.9.6.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/ggsci_4.2.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/cowplot_1.2.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/ggsignif_0.6.4.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/gridExtra_2.3.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/polynom_1.4-1.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/rstatix_0.7.3.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/tidyverse_2.0.0.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/car_3.1-3.zip'
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.5/ggpubr_0.6.2.zip'
+package ‘xts’ successfully unpacked and MD5 sums checked
+package ‘TTR’ successfully unpacked and MD5 sums checked
+package ‘quadprog’ successfully unpacked and MD5 sums checked
+package ‘quantmod’ successfully unpacked and MD5 sums checked
+package ‘fastmap’ successfully unpacked and MD5 sums checked
+package ‘sys’ successfully unpacked and MD5 sums checked
+package ‘ps’ successfully unpacked and MD5 sums checked
+package ‘sass’ successfully unpacked and MD5 sums checked
+package ‘digest’ successfully unpacked and MD5 sums checked
+package ‘colorspace’ successfully unpacked and MD5 sums checked
+package ‘fracdiff’ successfully unpacked and MD5 sums checked
+package ‘lmtest’ successfully unpacked and MD5 sums checked
+package ‘timeDate’ successfully unpacked and MD5 sums checked
+package ‘tseries’ successfully unpacked and MD5 sums checked
+package ‘urca’ successfully unpacked and MD5 sums checked
+package ‘zoo’ successfully unpacked and MD5 sums checked
+package ‘RcppArmadillo’ successfully unpacked and MD5 sums checked
+package ‘cachem’ successfully unpacked and MD5 sums checked
+package ‘rappdirs’ successfully unpacked and MD5 sums checked
+package ‘askpass’ successfully unpacked and MD5 sums checked
+package ‘base64enc’ successfully unpacked and MD5 sums checked
+package ‘processx’ successfully unpacked and MD5 sums checked
+package ‘evaluate’ successfully unpacked and MD5 sums checked
+package ‘highr’ successfully unpacked and MD5 sums checked
+package ‘xfun’ successfully unpacked and MD5 sums checked
+package ‘yaml’ successfully unpacked and MD5 sums checked
+package ‘bslib’ successfully unpacked and MD5 sums checked
+package ‘fontawesome’ successfully unpacked and MD5 sums checked
+package ‘htmltools’ successfully unpacked and MD5 sums checked
+package ‘jquerylib’ successfully unpacked and MD5 sums checked
+package ‘tinytex’ successfully unpacked and MD5 sums checked
+package ‘Deriv’ successfully unpacked and MD5 sums checked
+package ‘forecast’ successfully unpacked and MD5 sums checked
+package ‘microbenchmark’ successfully unpacked and MD5 sums checked
+package ‘rbibutils’ successfully unpacked and MD5 sums checked
+package ‘backports’ successfully unpacked and MD5 sums checked
+package ‘memoise’ successfully unpacked and MD5 sums checked
+package ‘blob’ successfully unpacked and MD5 sums checked
+package ‘DBI’ successfully unpacked and MD5 sums checked
+package ‘data.table’ successfully unpacked and MD5 sums checked
+package ‘gtable’ successfully unpacked and MD5 sums checked
+package ‘isoband’ successfully unpacked and MD5 sums checked
+package ‘S7’ successfully unpacked and MD5 sums checked
+package ‘gargle’ successfully unpacked and MD5 sums checked
+package ‘uuid’ successfully unpacked and MD5 sums checked
+package ‘curl’ successfully unpacked and MD5 sums checked
+package ‘ids’ successfully unpacked and MD5 sums checked
+package ‘rematch2’ successfully unpacked and MD5 sums checked
+package ‘mime’ successfully unpacked and MD5 sums checked
+package ‘openssl’ successfully unpacked and MD5 sums checked
+package ‘systemfonts’ successfully unpacked and MD5 sums checked
+package ‘textshaping’ successfully unpacked and MD5 sums checked
+package ‘callr’ successfully unpacked and MD5 sums checked
+package ‘fs’ successfully unpacked and MD5 sums checked
+package ‘rmarkdown’ successfully unpacked and MD5 sums checked
+package ‘selectr’ successfully unpacked and MD5 sums checked
+package ‘numDeriv’ successfully unpacked and MD5 sums checked
+package ‘doBy’ successfully unpacked and MD5 sums checked
+package ‘SparseM’ successfully unpacked and MD5 sums checked
+package ‘MatrixModels’ successfully unpacked and MD5 sums checked
+package ‘minqa’ successfully unpacked and MD5 sums checked
+package ‘nloptr’ successfully unpacked and MD5 sums checked
+package ‘reformulas’ successfully unpacked and MD5 sums checked
+package ‘Rdpack’ successfully unpacked and MD5 sums checked
+package ‘RcppEigen’ successfully unpacked and MD5 sums checked
+package ‘farver’ successfully unpacked and MD5 sums checked
+package ‘labeling’ successfully unpacked and MD5 sums checked
+package ‘RColorBrewer’ successfully unpacked and MD5 sums checked
+package ‘viridisLite’ successfully unpacked and MD5 sums checked
+package ‘corrplot’ successfully unpacked and MD5 sums checked
+package ‘broom’ successfully unpacked and MD5 sums checked
+package ‘conflicted’ successfully unpacked and MD5 sums checked
+package ‘dbplyr’ successfully unpacked and MD5 sums checked
+package ‘dtplyr’ successfully unpacked and MD5 sums checked
+package ‘forcats’ successfully unpacked and MD5 sums checked
+package ‘ggplot2’ successfully unpacked and MD5 sums checked
+package ‘googledrive’ successfully unpacked and MD5 sums checked
+package ‘googlesheets4’ successfully unpacked and MD5 sums checked
+package ‘haven’ successfully unpacked and MD5 sums checked
+package ‘httr’ successfully unpacked and MD5 sums checked
+package ‘jsonlite’ successfully unpacked and MD5 sums checked
+package ‘modelr’ successfully unpacked and MD5 sums checked
+package ‘ragg’ successfully unpacked and MD5 sums checked
+package ‘reprex’ successfully unpacked and MD5 sums checked
+package ‘rstudioapi’ successfully unpacked and MD5 sums checked
+package ‘rvest’ successfully unpacked and MD5 sums checked
+package ‘xml2’ successfully unpacked and MD5 sums checked
+package ‘carData’ successfully unpacked and MD5 sums checked
+package ‘abind’ successfully unpacked and MD5 sums checked
+package ‘Formula’ successfully unpacked and MD5 sums checked
+package ‘pbkrtest’ successfully unpacked and MD5 sums checked
+package ‘quantreg’ successfully unpacked and MD5 sums checked
+package ‘lme4’ successfully unpacked and MD5 sums checked
+package ‘scales’ successfully unpacked and MD5 sums checked
+package ‘ggrepel’ successfully unpacked and MD5 sums checked
+package ‘ggsci’ successfully unpacked and MD5 sums checked
+package ‘cowplot’ successfully unpacked and MD5 sums checked
+package ‘ggsignif’ successfully unpacked and MD5 sums checked
+package ‘gridExtra’ successfully unpacked and MD5 sums checked
+package ‘polynom’ successfully unpacked and MD5 sums checked
+package ‘rstatix’ successfully unpacked and MD5 sums checked
+package ‘tidyverse’ successfully unpacked and MD5 sums checked
+package ‘car’ successfully unpacked and MD5 sums checked
+package ‘ggpubr’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\Purvi\AppData\Local\Temp\RtmpKISgfk\downloaded_packages
+installing the source package ‘knitr’
+trying URL 'https://cran.rstudio.com/src/contrib/knitr_1.51.tar.gz'
+Content type 'application/x-gzip' length 483744 bytes (472 KB)
+downloaded 472 KB
+
+* installing *source* package 'knitr' ...
+** this is package 'knitr' version '1.51'
+** package 'knitr' successfully unpacked and MD5 sums checked
+** using staged installation
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (knitr)
+
+The downloaded source packages are in
+	‘C:\Users\Purvi\AppData\Local\Temp\RtmpKISgfk\downloaded_packages’
+> library(tidyverse)
+── Attaching core tidyverse packages ────────────────────────────────────────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.1     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.2.0     
+── Conflicts ──────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package to force all conflicts to become errors
+> library(car)
+Loading required package: carData
+
+Attaching package: ‘car’
+
+The following object is masked from ‘package:dplyr’:
+
+    recode
+
+The following object is masked from ‘package:purrr’:
+
+    some
+> library(ggpubr)
+> data <- read.csv("AI_Impact_on_Jobs_2030.csv")
+> 
+> 
+> library(tidyverse)
+> library(car)
+> library(ggpubr)
+> data <- read.csv("AI_Impact_on_Jobs_2030.csv")
+> anova_model <- aov(Average_Salary ~ Education_Level, data = data)
+> summary(anova_model)
+                  Df    Sum Sq   Mean Sq F value Pr(>F)
+Education_Level    3 3.855e+09 1.285e+09   1.073  0.359
+Residuals       2996 3.588e+12 1.198e+09               
+> ggboxplot(data, x = "Education_Level", y = "Average_Salary",
++           fill = "Education_Level", palette = "jco",
++           title = "Average Salary by Education Level")
+> ###############PRAC 8
+> library(readr)
+> library(tidyverse)
+> library(car)
+> library(ggpubr)
+> 
+> # 1. Load the dataset
+> df <- read.csv("AI_Impact_on_Jobs_2030.csv", stringsAsFactors = TRUE)
+> 
+> # 2. Two-Way ANOVA
+> # Testing how Average_Salary is affected by Education_Level, Risk_Category, and their interaction
+> model <- aov(Average_Salary ~ Education_Level * Risk_Category, data = df)
+> 
+> # 3. Display the results
+> summary(model)
+                                Df    Sum Sq   Mean Sq F value Pr(>F)  
+Education_Level                  3 3.855e+09 1.285e+09   1.076 0.3581  
+Risk_Category                    2 4.985e+09 2.493e+09   2.086 0.1243  
+Education_Level:Risk_Category    6 1.304e+10 2.173e+09   1.819 0.0915 .
+Residuals                     2988 3.570e+12 1.195e+09                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+> 
+> # 4. View the means for each group combination
+> aggregate(Average_Salary ~ Education_Level + Risk_Category, data = df, FUN = mean)
+   Education_Level Risk_Category Average_Salary
+1       Bachelor's          High       87616.68
+2      High School          High       83841.44
+3         Master's          High       90989.23
+4              PhD          High       86947.62
+5       Bachelor's           Low       87420.59
+6      High School           Low       93598.39
+7         Master's           Low       90892.61
+8              PhD           Low       84701.78
+9       Bachelor's        Medium       90082.70
+10     High School        Medium       88154.10
+11        Master's        Medium       91714.09
+12             PhD        Medium       92236.91
+> ###############PRAC9
+> data <- read.csv("AI_Impact_on_Jobs_2030.csv")
+> 
+> median_salary <- median(data$Average_Salary, na.rm = TRUE)
+> median_exposure <- median(data$AI_Exposure_Index, na.rm = TRUE)
+> 
+> data$Salary_Cat <- ifelse(data$Average_Salary >= median_salary, "High", "Low")
+> data$Exposure_Cat <- ifelse(data$AI_Exposure_Index >= median_exposure, "High", "Low")
+> 
+> contingency_table <- table(data$Salary_Cat, data$Exposure_Cat)
+> 
+> print(contingency_table)
+      
+       High Low
+  High  752 748
+  Low   779 721
+> 
+> test_result <- chisq.test(contingency_table)
+> 
+> print(test_result)
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  contingency_table
+X-squared = 0.90172, df = 1, p-value = 0.3423
