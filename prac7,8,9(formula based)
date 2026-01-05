@@ -1,0 +1,130 @@
+
+R version 4.5.2 (2025-10-31 ucrt) -- "[Not] Part in a Rumble"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Workspace loaded from ~/RPROG/.RData]
+
+> ###########prac 7
+> data <- read.csv("AI_Impact_on_Jobs_2030.csv")
+> 
+> # 1. Basic Stats
+> y <- data$Average_Salary
+> group <- as.factor(data$Education_Level)
+> n_total <- length(y)
+> k <- length(unique(group))
+> grand_mean <- mean(y)
+> 
+> group_means <- tapply(y, group, mean)
+> group_sizes <- tapply(y, group, length)
+> 
+> ssb <- sum(group_sizes * (group_means - grand_mean)^2)
+> 
+> ssw <- sum(sapply(levels(group), function(lvl) {
++     sum((y[group == lvl] - group_means[lvl])^2)
++ }))
+> 
+> df_between <- k - 1
+> df_within <- n_total - k
+> 
+> msb <- ssb / df_between
+> msw <- ssw / df_within
+> 
+> 
+> f_stat <- msb / msw
+> p_value <- pf(f_stat, df_between, df_within, lower.tail = FALSE)
+> 
+> cat("One-Way ANOVA Results:\n")
+One-Way ANOVA Results:
+> cat("F-statistic:", f_stat, "\nP-value:", p_value, "\n")
+F-statistic: 1.073041 
+P-value: 0.3592291 
+> 
+> 
+> if(p_value < 0.05) {
++     print("Result: Reject Null Hypothesis. Education Level significantly impacts Average Salary.")
++ } else {
++     print("Result: Accept Null Hypothesis. No significant difference in salary across education levels.")
++ }
+[1] "Result: Accept Null Hypothesis. No significant difference in salary across education levels."
+> 
+> ###################pra 8
+> A <- as.factor(data$Education_Level)
+> B <- as.factor(data$Risk_Category)
+> Y <- data$Average_Salary
+> N <- length(Y)
+> a <- nlevels(A)
+> b <- nlevels(B)
+> sst <- sum((Y - mean(Y))^2)
+> means_A <- tapply(Y, A, mean)
+> counts_A <- tapply(Y, A, length)
+> ss_A <- sum(counts_A * (means_A - mean(Y))^2)
+> means_B <- tapply(Y, B, mean)
+> counts_B <- tapply(Y, B, length)
+> ss_B <- sum(counts_B * (means_B - mean(Y))^2)
+> cell_means <- tapply(Y, list(A, B), mean)
+> cell_counts <- tapply(Y, list(A, B), length)
+> # Simplify: SS_Cells = sum(n_ij * (mean_ij - grand_mean)^2)
+> ss_cells <- sum(cell_counts * (cell_means - mean(Y))^2, na.rm = TRUE)
+> ss_AB <- ss_cells - ss_A - ss_B
+> ss_e <- sst - ss_cells
+> df_A <- a - 1
+> df_B <- b - 1
+> df_AB <- df_A * df_B
+> df_E <- N - (a * b)
+> 
+> ms_A <- ss_A / df_A
+> f_A <- ms_A / (ss_e / df_E)
+> p_A <- pf(f_A, df_A, df_E, lower.tail = FALSE)
+> 
+> cat("Two-Way ANOVA Results:\n")
+Two-Way ANOVA Results:
+> cat("Factor A (Education) P-value:", p_A, "\n")
+Factor A (Education) P-value: 0.3581418 
+> 
+> 
+> # If p_A < 0.05, we reject H0 for that specific factor.
+> 
+> 
+> #######################prac 9
+> # 1. Create Contingency Table (Observed)
+> observed <- table(data$Education_Level, data$Risk_Category)
+> row_totals <- rowSums(observed)
+> col_totals <- colSums(observed)
+> grand_total <- sum(observed)
+> # Expected = (Row Total * Col Total) / Grand Total
+> expected <- outer(row_totals, col_totals) / grand_total
+> # Formula: Sum((O - E)^2 / E)
+> chi_sq_stat <- sum((observed - expected)^2 / expected)
+> df <- (nrow(observed) - 1) * (ncol(observed) - 1)
+> p_value_chi <- pchisq(chi_sq_stat, df, lower.tail = FALSE)
+> cat("Chi-Square Test Results:\n")
+Chi-Square Test Results:
+> cat("Statistic:", chi_sq_stat, "\nP-value:", p_value_chi, "\n")
+Statistic: 2.719201 
+P-value: 0.8431742 
+> 
+> 
+> if(p_value_chi < 0.05) {
++     print("Result: Reject Null Hypothesis. A relationship exists between Education and Risk Category.")
++ } else {
++     print("Result: Accept Null Hypothesis. They are independent.")
++ }
+[1] "Result: Accept Null Hypothesis. They are independent."
+> 
+> 
+> 
